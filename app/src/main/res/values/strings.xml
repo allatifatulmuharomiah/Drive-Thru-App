@@ -3,5 +3,7 @@
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>
     <string name="full_name">Full Name</string>
+    <string name="email_adress">Email Adress</string>
+    <string name="password">Password</string>
 
 </resources>
