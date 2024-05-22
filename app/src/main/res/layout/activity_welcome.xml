@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="232dp"
-        android:layout_height="261dp"
+        android:layout_width="186dp"
+        android:layout_height="187dp"
         android:src="@drawable/logo_gacoan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

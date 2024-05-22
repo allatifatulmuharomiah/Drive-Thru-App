@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="186dp"
-        android:layout_height="227dp"
+        android:layout_width="165dp"
+        android:layout_height="213dp"
         android:layout_centerVertical="true"
         android:src="@drawable/logo_gacoan" />
     <ProgressBar
