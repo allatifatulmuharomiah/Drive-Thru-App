@@ -5,5 +5,11 @@
     <string name="full_name">Full Name</string>
     <string name="email_adress">Email Adress</string>
     <string name="password">Password</string>
+    <string name="user_name">user_name</string>
+    <string name="sign_in2">Sign In</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="log_in">Log In</string>
+    <string name="register2">Register</string>
 
 </resources>
