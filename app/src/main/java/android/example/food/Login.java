@@ -9,11 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -37,17 +36,13 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Get reference to variables
         etEmail = findViewById(R.id.username);
         etPassword = findViewById(R.id.password);
     }
 
-    // Triggered when the LOGIN button is clicked
     public void checkLogin(View arg0) {
-        // Get text from email and password fields
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
-        // Initialize AsyncLogin() class with email and password
         new AsyncLogin().execute(email, password);
     }
 
@@ -59,7 +54,6 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // This method will be running on UI thread
             pdLoading.setMessage("\tLoading...");
             pdLoading.setCancelable(false);
             pdLoading.show();
@@ -68,15 +62,13 @@ public class Login extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                // Enter URL address where your PHP file resides
-                url = new URL("http://192.168.1.12/appdrive/login.php");
+                url = new URL("http://192.168.120.74/appdrive/login.php");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return "exception";
             }
 
             try {
-                // Setup HttpURLConnection class to send and receive data from PHP and MySQL
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
@@ -84,13 +76,11 @@ public class Login extends AppCompatActivity {
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
 
-                // Append parameters to URL
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter("username", params[0])
                         .appendQueryParameter("password", params[1]);
                 String query = builder.build().getEncodedQuery();
 
-                // Open connection for sending data
                 OutputStream os = conn.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                 writer.write(query);
@@ -106,9 +96,7 @@ public class Login extends AppCompatActivity {
 
             try {
                 int response_code = conn.getResponseCode();
-                // Check if successful connection made
                 if (response_code == HttpURLConnection.HTTP_OK) {
-                    // Read data sent from server
                     InputStream input = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
                     StringBuilder result = new StringBuilder();
@@ -116,7 +104,6 @@ public class Login extends AppCompatActivity {
                     while ((line = reader.readLine()) != null) {
                         result.append(line);
                     }
-                    // Pass data to onPostExecute method
                     return result.toString();
                 } else {
                     return "unsuccessful";
@@ -133,18 +120,30 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            // This method will be running on UI thread
             pdLoading.dismiss();
 
-            if (result.equalsIgnoreCase("true")) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                Login.this.finish();
-            } else if (result.equalsIgnoreCase("false")) {
-                // If username and password do not match display an error message
-                Toast.makeText(Login.this, "Email atau Password tidak valid", Toast.LENGTH_LONG).show();
-            } else if (result.equalsIgnoreCase("exception") || result.equalsIgnoreCase("unsuccessful")) {
-                Toast.makeText(Login.this, "Oops! Sepertinya koneksi sedang bermasalah.", Toast.LENGTH_LONG).show();
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                String status = jsonObject.getString("status");
+
+                if (status.equalsIgnoreCase("true")) {
+                    int role = jsonObject.getInt("role");
+                    if (role == 1) {
+                        Intent intent = new Intent(Login.this, admin.class);
+                        startActivity(intent);
+                    } else if (role == 2) {
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    Login.this.finish();
+                } else if (status.equalsIgnoreCase("false")) {
+                    Toast.makeText(Login.this, "Email atau Password tidak valid", Toast.LENGTH_LONG).show();
+                } else if (status.equalsIgnoreCase("exception") || status.equalsIgnoreCase("unsuccessful")) {
+                    Toast.makeText(Login.this, "Oops! Sepertinya koneksi sedang bermasalah.", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(Login.this, "JSON parsing error", Toast.LENGTH_LONG).show();
             }
         }
     }
