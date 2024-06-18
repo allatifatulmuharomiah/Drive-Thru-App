@@ -1,19 +1,135 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".TrackOrderActivity">
 
     <TextView
-        android:id="@+id/orderStatus"
+        android:id="@+id/orderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8014"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Order Status"
-        android:textSize="18sp" />
+        android:layout_below="@id/orderNumber"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iconReceived"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_move_to_inbox_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Diterima" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iconInProcess"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_wifi_protected_setup_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Dalam Proses" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iconPickup"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/drive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Pickup" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/orderCode"
+        android:id="@+id/statusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your order is ready for pickup, have a nice day!"
+        android:layout_below="@id/iconPickup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Order Code" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:layout_below="@id/statusMessage"
+        android:layout_marginTop="96dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/orderDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Details"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/orderItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mie Goreng Pedas - 2, Mie Kuah - 1"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/orderTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Harga: Rp 45,000"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/orderNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note: Tambahan cabe extra"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
+
