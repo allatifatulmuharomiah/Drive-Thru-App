@@ -24,21 +24,33 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="120dp"
                 android:background="@color/colorPrimaryDark">
+
+
+                <ImageView
+                    android:id="@+id/imageLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/logo_gacoan"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="20dp" />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/epilogue_semibold"
                     android:text="Welcome, Lia!"
+                    android:textAlignment="textEnd"
                     android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
-                    android:textSize="16sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,16 +58,19 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/epilogue_semibold"
                     android:text="Siap makan pedas hari ini?"
+                    android:textAlignment="viewEnd"
                     android:textColor="@color/design_default_color_on_primary"
+                    android:textSize="16sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.888"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.422" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
