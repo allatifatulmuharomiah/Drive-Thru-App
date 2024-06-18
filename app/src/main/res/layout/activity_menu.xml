@@ -11,14 +11,15 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Mie Gacoan"
+            android:text="MENU"
             android:textColor="#333333"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +60,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Menu Mie"
+            android:text="Menu Makanan"
             android:textColor="#333333"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +75,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
